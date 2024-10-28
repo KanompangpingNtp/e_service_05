@@ -10,8 +10,10 @@
         body {
             font-family: 'Sarabun', sans-serif;
             font-size: 11.5px;
-            margin-left: 40px; /* ระยะห่างจากขอบซ้าย */
-            margin-right: 40px; /* ระยะห่างจากขอบขวา */
+            margin-left: 40px;
+            /* ระยะห่างจากขอบซ้าย */
+            margin-right: 40px;
+            /* ระยะห่างจากขอบขวา */
         }
 
         h4 {
@@ -184,6 +186,8 @@
             padding-left: 10px;
             padding-right: 150px;
             color: blue;
+            word-wrap: break-word; /* บังคับให้ข้อความขึ้นบรรทัดใหม่เมื่อยาวเกิน */
+            white-space: normal;   /* เพื่อให้ข้อความไม่แสดงเป็นบรรทัดเดียว */
         }
 
         span.document_count {
@@ -228,99 +232,98 @@
             color: blue;
         }
 
+        .left,
+        .right {
+            display: inline-block;
+            vertical-align: top;
+            width: 45%;
+        }
+
+        .left {
+            text-align: left;
+        }
+
+        .right_location {
+            text-align: right;
+        }
+
+        .underline {
+            text-decoration: underline;
+        }
+
+        .footer-line {
+            border-top: 1px solid black;
+            margin-top: 10px;
+        }
+
     </style>
     <title>PDF Report</title>
 </head>
 <body>
 
     @php
-        $thaiMonths = [
-            1 => 'มกราคม',
-            2 => 'กุมภาพันธ์',
-            3 => 'มีนาคม',
-            4 => 'เมษายน',
-            5 => 'พฤษภาคม',
-            6 => 'มิถุนายน',
-            7 => 'กรกฎาคม',
-            8 => 'สิงหาคม',
-            9 => 'กันยายน',
-            10 => 'ตุลาคม',
-            11 => 'พฤศจิกายน',
-            12 => 'ธันวาคม'
-        ];
+    $thaiMonths = [
+    1 => 'มกราคม',
+    2 => 'กุมภาพันธ์',
+    3 => 'มีนาคม',
+    4 => 'เมษายน',
+    5 => 'พฤษภาคม',
+    6 => 'มิถุนายน',
+    7 => 'กรกฎาคม',
+    8 => 'สิงหาคม',
+    9 => 'กันยายน',
+    10 => 'ตุลาคม',
+    11 => 'พฤศจิกายน',
+    12 => 'ธันวาคม'
+    ];
 
-        // แปลงเป็นปีพุทธศักราช
-        $thaiYear = $form->year + 543;
+    // แปลงเป็นปีพุทธศักราช
+    $thaiYear = $form->year + 543;
 
-        // แปลงเดือนเป็นชื่อภาษาไทย
-        $thaiMonth = $thaiMonths[$form->month];
+    // แปลงเดือนเป็นชื่อภาษาไทย
+    $thaiMonth = $thaiMonths[$form->month];
     @endphp
 
 
     <div class="container">
-        <h4>แบบคำขอร้องทั่วไป</h4><br>
+        <h4>คําร้องทะเบียนพณิชย์</h4><br>
 
-        <p>หมายเลขคำร้องที่ ............. / .............</p>
+        <div class="left">
+            คำร้องที่ ..............<br>
+            รับวันที่ .............. / .............. / ..............<br>
+            เรื่อง คำร้องทะเบียนพาณิชย์
+        </div>
+        <div class="right">
+            สำนักงานทะเบียนพาณิชย์<br>
+            อำเภอ อำเภอตัวอย่าง ๔.๐<br>
+            จังหวัด กรุงเทพมหานคร
+        </div>
+        <div class="footer-line"></div>
 
-        <p class="right">เขียนที่ <span class="location">{{ $form->location }}</span> </p>
+
+        <p class="right_location">เขียนที่ <span class="location">{{ $form->location }}</span> </p>
         <p style="margin-left: 320px;">วันที่<span class="day">{{ $form->day }}</span>เดือน<span class="month">{{ $thaiMonth  }}</span>ปี<span class="year">{{ $thaiYear  }}</span></p>
-
-        <p><b>เรื่อง</b><span class="submission_name">{{ $form->submission_name }}</span></p>
-        <p><b>เรียน</b> นายกเทศมนตรีเมืองต้นแบบ ๔.๐ </p><br>
 
         <p style="margin-left: 55px;">ข้าพเจ้า <span class="fullname">{{ $form->fullname }}</span> อาย <span class="age">{{ $form->age }}</span>ปี อาชีพ<span class="occupation">{{ $form->occupation }}</span></p>
         <p>อยู่บ้านเลขที่<span class="house_no">{{ $form->house_no }}</span>หมู่ที่<span class="village_no">{{ $form->village_no }}</span>ตรอก/ซอย<span class="alley">{{ $form->alley }}</span></p>
         <p>ถนน<span class="road">{{ $form->road }}</span>แขวง/ตำบล<span class="sub_district">{{ $form->sub_district }}</span>เขต/อำเภอ<span class="district">{{ $form->district }}</span></p>
-        <p>จังหวัด<span class="province">{{ $form->province }}</span>หมายเลขโทรศัพท์<span class="phone">{{ $form->phone }}</span> </p>
+        <p>จังหวัด<span class="province">{{ $form->province }}</span>ชื่อที่ใช้เรียกในการประกอบพาณิชย์<span class="submission_name">{{ $form->submission_name }}</span></p>
+        <p>ได้จดทะเบียนพาณิชย์คําขอที่<span class="submission_name">{{ $form->submission_name }}</span></p>
 
-        <p style="margin-left: 55px;">ขอยื่นคำร้องต่อท่านนายกเทศบาลเมืองต้นแบบ ๔.๐ ดังนี้</p>
+        <p>ขอยื่นคําร้องต่อพนักงานเจ้าหน้าที่ทะเบียนพาณิชย์ ดังต่อไปนี้</p>
         <p style="margin-left: 55px;"><span class="submission">{{ $form->submission }}</span></p>
-
-        <p>พร้อมยินยอมให้ท่านอาจารย์หลักฐานดังต่อไปนี้ จำนวน<span class="document_count">{{ $form->document_count }}</span>ฉบับ</p>
-        <p>ข้าพเจ้ายังยอมรับว่าจำเป็นต้อง จึงลงลายมือชื่อ/ลายเซ็นผู้ร้องเพิ่มเติมไว้เป็นหลักฐาน</p>
 
         <table style="width: 100%; margin-top: 10px;">
             <tr>
                 <!-- คอลัมน์ซ้าย -->
                 <td style="width: 50%; vertical-align: top;">
-                    <div class="officer-note">
-                        <div class="officer-note-title">
-                            สำหรับเจ้าหน้าที่บันทึกเพิ่มเติม<br>
-                            (กรณีผู้ยื่นคำร้องไม่ยินยอมลงลายมือชื่อ)
-                        </div>
-                        <div class="dotted-line"></div>
-                        <div class="dotted-line"></div>
-                        <div class="dotted-line"></div>
-                        <div class="dotted-line"></div>
-                        <div class="dotted-line"></div>
-                        <div class="dotted-line"></div>
-                        <div class="dotted-line"></div>
-                        <div class="dotted-line"></div>
-                        <div class="dotted-line"></div>
-                        <div class="dotted-line"></div>
-                        <p style="text-align: center;">ลงชื่อ..............................................</p>
-                        <p style="text-align: center;">(..........................................) </p>
-                        <p style="text-align: center;">ตำแหน่ง...........................................</p>
-                    </div>
                 </td>
 
                 <!-- คอลัมน์ขวา -->
                 <td style="width: 50%; vertical-align: top; text-align: center;">
                     <p>ลงชื่อ<span class="fullname">{{ $form->fullname }}</span>ผู้ยื่นคำร้อง</p>
-                    <p>(<span class="fullname">{{ $form->fullname }}</span>)</p>
+                    <p>(<span class="fullname">{{ $form->salutation }}{{ $form->fullname }}</span>)</p>
 
-                    <p>ลงชื่อ .....................................ผู้เขียน/บันทึก</p>
-                    <p>( ............................................................ )</p>
-                    <p>ความคิดเห็นปลัดเทศบาลเมืองต้นแบบ ๔.๐</p>
-                    <p>........................................................................</p>
-                    <p>........................................................................</p>
-                    <p>ลงชื่อ ................................................</p>
-                    <p>( ............................................................)</p>
-                    <p>ความคิดเห็นนายกเทศบาลเมืองต้นแบบ ๔.๐</p>
-                    <p>........................................................................</p>
-                    <p>........................................................................</p>
-                    <p>ลงชื่อ ................................................</p>
-                    <p>( ............................................................)</p>
                 </td>
             </tr>
         </table>

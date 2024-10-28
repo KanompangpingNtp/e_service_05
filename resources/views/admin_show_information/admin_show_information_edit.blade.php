@@ -119,12 +119,12 @@
 
         <div class="row">
             <div class="mb-3 col-md-4">
-                <label for="complaintName" class="form-label">ชื่อเรื่องคำขอ</label>
+                <label for="complaintName" class="form-label">ชื่อที่ใช้เรียกในการประกอบพาณิชย์</label>
                 <input type="text" class="form-control" id="complaintName" name="complaintName" value="{{ old('complaintName', $form->submission_name) }}" placeholder="โปรดระบุ" required>
             </div>
         </div>
         <div class="col-md-7">
-            <label for="complaintDetails" class="form-label">ขอยื่นคำร้องต่อหน่วยงาน <span class="text-danger">*</span></label>
+            <label for="complaintDetails" class="form-label">ขอยื่นคําร้องต่อพนักงานเจ้าหน้าที่ทะเบียนพาณิชย์ <span class="text-danger">*</span></label>
             <textarea class="form-control" id="complaintDetails" name="complaintDetails" rows="3" placeholder="โปรดระบุ" required>{{ old('complaintDetails', $form->submission) }}</textarea>
         </div>
 
@@ -144,7 +144,7 @@
             </div>
         </div> --}}
 
-        <div class="row">
+        {{-- <div class="row">
             <div class="col-md-2 mb-3">
                 <label for="documentNumber" class="form-label">จำนวนเอกสาร</label>
                 <input type="number" class="form-control" id="documentNumber" name="documentNumber" placeholder="โปรดระบุ" required oninput="updateFileInputs()">
@@ -176,7 +176,7 @@
                     container.appendChild(fileInput);
                 }
             }
-        </script>
+        </script> --}}
 
         <br>
 

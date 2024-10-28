@@ -112,15 +112,15 @@
         <br>
 
         <div class="mb-3 col-md-4">
-            <label for="complaintName" class="form-label">ชื่อเรื่องคำขอ</label>
+            <label for="complaintName" class="form-label">ชื่อที่ใช้เรียกในการประกอบพาณิชย์<span class="text-danger">*</span></label>
             <input type="text" class="form-control" id="complaintName" name="complaintName" placeholder="โปรดระบุ" required>
         </div>
         <div class="mb-3 col-md-7">
-            <label for="complaintDetails" class="form-label">ขอยื่นคำร้องต่อหน่วยงาน</label>
+            <label for="complaintDetails" class="form-label">ขอยื่นคําร้องต่อพนักงานเจ้าหน้าที่ทะเบียนพาณิชย์<span class="text-danger">*</span></label>
             <textarea class="form-control" id="complaintDetails" name="complaintDetails" rows="3" placeholder="โปรดระบุ" required></textarea>
         </div>
 
-        <br>
+        {{-- <br>
 
         <div class="row">
             <div class="col-md-2 mb-3">
@@ -154,7 +154,7 @@
                     container.appendChild(fileInput);
                 }
             }
-        </script>
+        </script> --}}
 
         <br>
 
